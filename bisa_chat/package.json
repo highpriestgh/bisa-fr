@@ -1,0 +1,19 @@
+{
+  "name": "bisa_chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express-session": "^1.15.6",
+    "firebase-admin": "^7.1.1",
+    "moment": "^2.24.0",
+    "socket.io": "^2.2.0",
+    "sync-mysql": "^3.0.1"
+  }
+}

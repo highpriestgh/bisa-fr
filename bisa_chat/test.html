@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Bisa Socket test</title>
+    </head>
+    <body>
+
+        <h1>BISA CHAT ENGINE PROTOTYPE ARCHITECTURE TEST</h1>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+        <script>
+            //var url = 'http://localhost:3000';
+            var url = 'https://www.app.bisa.fr:3000';
+
+            console.log(url);
+            var socket = io(url);
+
+            socket.emit('newContact', {contactName: 'name'});
+            
+            socket.emit('getUserQuestions', 1); // ('event', 'userId')
+            socket.emit('getUserQuestionDetails', 1, 1); // ('event', 'userId', 'questionId')
+
+            socket.on('connectionSuccessful', (msg) => {
+                console.log(msg)
+            });
+
+            socket.on('updateUserQuestions', (data) => {
+                console.log('from server ', data)
+            });
+
+            socket.on('updateUserQuestionDetails', (data) => {
+                console.log('from details server', data);
+            });
+
+            // respond to chat
+            var data = {
+                userId: 1,
+                questionId: 30,
+                responderType: "user",
+                questionContent: "Lorem ipsum sit dolor",
+                questionMedia: "n/a"
+            }
+
+            socket.emit('sendUserChat', data);
+            // socket.on('receiveUserChat', (data) => {
+            //     console.log('from data', data);
+            // })
+
+            socket.on('recieveDoctorChat',(data) => {
+                console.log('from doc', data);
+            })
+        </script>
+    </body>
+</html>
